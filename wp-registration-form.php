@@ -26,18 +26,20 @@ class Custom_registration_form{
     }
 
     public function custom_register_form(){
+        $first_name = $_POST['first_name'] ?? '';
+        $last_name = $_POST['last_name'] ?? '';
         ?>
         <p>
             <label>
                 <?php _e('First Name', 'regi-form'); ?>
             </label>
-            <input type="text" name="first_name" id="first_name">    
+            <input type="text" name="first_name" id="first_name" value="<?php echo esc_attr( $first_name ); ?>">    
         </p>
         <p>
             <label>
                 <?php _e('Last Name', 'regi-form'); ?>
             </label>
-            <input type="text" name="last_name" id="last_name">    
+            <input type="text" name="last_name" id="last_name" value="<?php echo esc_attr( $last_name ); ?>">    
         </p>
         <?php
     }
