@@ -18,6 +18,7 @@ class Custom_registration_form{
     public function __construct(){
         add_action( 'init', array($this, 'registration_form_load_textdomain') );
         add_action( 'register_form', array($this, 'custom_register_form') );
+        add_filter('registration_errors', array($this, 'custom_register_error'), 10, 3 );
     }
 
     function registration_form_load_textdomain() {
@@ -41,6 +42,17 @@ class Custom_registration_form{
         <?php
     }
 
+    public function custom_register_error($errors, $sanitized_user_login, $user_email){
+        if(empty($_POST['first_name'])){
+            $errors->add('first_name_blank', __('First Name can not be blank', 'regi-form'));
+        }
+
+        if(empty($_POST['last_name'])){
+            $errors->add('last_name_blank', __('last Name can not be blank', 'regi-form'));
+        }
+
+        return $errors;
+    }
 }
 
 new Custom_registration_form();
