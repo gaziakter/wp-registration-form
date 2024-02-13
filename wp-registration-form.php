@@ -19,6 +19,7 @@ class Custom_registration_form{
         add_action( 'init', array($this, 'registration_form_load_textdomain') );
         add_action( 'register_form', array($this, 'custom_register_form') );
         add_filter('registration_errors', array($this, 'custom_register_error'), 10, 3 );
+        add_action( 'user_register', array($this, 'input_user_data') );
     }
 
     function registration_form_load_textdomain() {
@@ -54,6 +55,16 @@ class Custom_registration_form{
         }
 
         return $errors;
+    }
+
+    public function input_user_data($user_id){
+        if(!empty($_POST['first_name'])){
+            update_user_meta( $user_id, 'first_name', sanitize_text_field($_POST['first_name'] ) );
+        }
+
+        if(!empty($_POST['last_name'])){
+            update_user_meta( $user_id, 'last_name', sanitize_text_field($_POST['last_name'] ) );
+        }
     }
 }
 
