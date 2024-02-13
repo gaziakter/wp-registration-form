@@ -17,11 +17,30 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Custom_registration_form{
     public function __construct(){
         add_action( 'init', array($this, 'registration_form_load_textdomain') );
+        add_action( 'register_form', array($this, 'custom_register_form') );
     }
 
     function registration_form_load_textdomain() {
         load_theme_textdomain( 'regi-form', plugin_dir_path( __FILE__ ) . '/languages' );
     }
+
+    public function custom_register_form(){
+        ?>
+        <p>
+            <label>
+                <?php _e('First Name', 'regi-form'); ?>
+            </label>
+            <input type="text" name="first_name" id="first_name">    
+        </p>
+        <p>
+            <label>
+                <?php _e('Last Name', 'regi-form'); ?>
+            </label>
+            <input type="text" name="last_name" id="last_name">    
+        </p>
+        <?php
+    }
+
 }
 
 new Custom_registration_form();
