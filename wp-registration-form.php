@@ -113,8 +113,3 @@ class Custom_registration_form{
 
 new Custom_registration_form();
 
-
-
-
-add_action( 'personal_options_update', 'wporg_update_extra_profile_fields' );
-
